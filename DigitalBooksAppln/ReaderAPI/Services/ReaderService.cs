@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.SignalR;
-using ReaderAPI.Models;
+﻿using ReaderAPI.Models;
 
 namespace ReaderAPI.Services
 {
@@ -48,22 +47,7 @@ namespace ReaderAPI.Services
                 var data = (from a in _db.Subscriptions
                             join b in _db.Books on a.BookId equals b.BookId
                             where ((a.SubscriptionId == subscriptionId) && (a.EmailId == emailId))
-                            select b.BookContent).ToList();
-                return data;
-            }
-            catch (Exception ex)
-            {
-                return ex;
-            }
-        }
-
-        public async Task<dynamic> AdminViewAsync()
-        {
-            try
-            {
-                var data = (from a in _db.Subscriptions
-                            join b in _db.Books on a.BookId equals b.BookId
-                            join c in _db.Users on a.UserId equals c.UserId select new { a.SubscriptionId, b.Title, b.Author }).ToList();
+                            select new { b.BookContent , b.Author,b.Title}).ToList();
                 return data;
             }
             catch (Exception ex)

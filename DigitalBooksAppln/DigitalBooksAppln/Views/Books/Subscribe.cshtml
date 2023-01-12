@@ -25,9 +25,8 @@
             <td>@item.Author</td>
             <td>@item.SubscriptionActive</td>
             <td>@item.BookId</td>
-                    <td>
-                    <td class="btn btn-primary">@Html.ActionLink("Cancel", "CancelSubscription", new Subscription{Title=item.Title,Author=item.Author,SubscriptionId=item.SubscriptionId})</td></td>
-                    @*<td class="btn btn-primary">@Html.ActionLink("Read Book", "ReadBook", new Subscription{SubscriptionId=item.SubscriptionId})</td>*@
+             <td class="btn btn-primary">@Html.ActionLink("Cancel", "CancelSubscription", new Subscription{Title=item.Title,Author=item.Author,SubscriptionId=item.SubscriptionId})</td>
+             <td class="btn btn-primary">@Html.ActionLink("Read Book", "ReadBook", new Subscription{SubscriptionId=item.SubscriptionId})</td>
         </tr>
     }
 </table>

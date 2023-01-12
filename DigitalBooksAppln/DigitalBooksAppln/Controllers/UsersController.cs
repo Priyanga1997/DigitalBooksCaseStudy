@@ -20,6 +20,10 @@ namespace DigitalBooksAppln.Controllers
             _httpContextAccessor = httpContextAccessor;
         }
 
+        /// <summary>
+        /// This method is used to display the login view
+        /// </summary>
+        /// <returns></returns>
         [Route("Users/Login")]
         [HttpGet]
         public async Task<IActionResult> Login()
@@ -27,6 +31,11 @@ namespace DigitalBooksAppln.Controllers
             return View();
         }
 
+        /// <summary>
+        /// This method is used for login
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         [Route("Users/Login")]
         [HttpPost]
         public async Task<IActionResult> Login(User login)
@@ -65,6 +74,10 @@ namespace DigitalBooksAppln.Controllers
             }
         }
 
+        /// <summary>
+        /// This method is used to display register view
+        /// </summary>
+        /// <returns></returns>
         [Route("Users/Register")]
         [HttpGet]
         public async Task<IActionResult> Register()
@@ -72,6 +85,11 @@ namespace DigitalBooksAppln.Controllers
             return View();
         }
 
+        /// <summary>
+        /// This method is used for register
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         [Route("Users/Register")]
         [HttpPost]
         public async Task<IActionResult> Register(User login)

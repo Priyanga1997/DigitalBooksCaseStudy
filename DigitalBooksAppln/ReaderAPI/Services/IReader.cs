@@ -10,6 +10,5 @@ namespace ReaderAPI.Services
         IEnumerable<Subscription> GetSubscriptionDetailsBySubscriptionId(int subscriptionId, string emailId);
         Task<dynamic> CancelSubscriptionAsync(int subscriptionId);
         Task<dynamic> ReadBookAsync(int subscriptionId, string emailId);
-        Task<dynamic> AdminViewAsync();
     }
 }

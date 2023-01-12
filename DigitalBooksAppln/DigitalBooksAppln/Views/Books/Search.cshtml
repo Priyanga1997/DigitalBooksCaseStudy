@@ -95,7 +95,7 @@
                 <td>@item.Active</td>
                 <td>@item.BookId</td>
                @* <td><a asp-action="Subscribe" asp-controller="Books" method="post" asp-route-id="@item.BookId" class="btn btn-primary">Subscribe</a></td>*@
-                    <td class="btn btn-primary">@Html.ActionLink("Subscribe", "SubscribeBooks", new Book{Title=item.Title,Author=item.Author,BookId=item.BookId})</td>
+                    <td class="btn btn-primary">@Html.ActionLink("Subscribe", "SubscribeBooks", new Book{Title=item.Title,Author=item.Author,BookId=item.BookId,BookContent=item.BookContent})</td>
             </tr>
         }
     </table>

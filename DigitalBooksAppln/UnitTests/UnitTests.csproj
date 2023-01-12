@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -11,7 +11,6 @@
 		<ProjectReference Include="..\Common\Common.csproj" />
 		<ProjectReference Include="..\DigitalBooksAppln\DigitalBooksAppln.csproj" />
 		<ProjectReference Include="..\ReaderAPI\ReaderAPI.csproj" />
-		<ProjectReference Include="..\UserAPI\UserAPI.csproj" />
 		<PackageReference Include="AutoFixture" Version="4.17.0" />
 		<PackageReference Include="AutoFixture.AutoNSubstitute" Version="4.17.0" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />

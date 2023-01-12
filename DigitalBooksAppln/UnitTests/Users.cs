@@ -1,10 +1,9 @@
 ﻿using AutoFixture.AutoNSubstitute;
 using AutoFixture;
-using UserAPI.Models;
 using Moq;
 using NUnit.Framework;
-using UserAPI.Services;
-using UserAPI;
+using DigitalBooksAppln.Services;
+using DigitalBooksAppln.Models;
 
 namespace UnitTests
 {
@@ -12,24 +11,24 @@ namespace UnitTests
     public class Users
     {
         private IFixture _fixture;
-        private Mock<IUser> _mock;
+        private Mock<IUsers> _mock;
 
         [SetUp]
         public void SetUp()
         {
             _fixture = new Fixture().Customize(new AutoNSubstituteCustomization());
             _fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-            _mock = new Mock<IUser>();
+            _mock = new Mock<IUsers>();
         }
 
         [Test]
         public void Login_OnPassingUsernameAndPassword_AllowsToLogin()
         {
             //Arrange
-            var token = _fixture.Create<string>();
+            var loginModel = _fixture.Create<LoginModel>();
             User user = _fixture.Create<User>();
             bool isRegister = _fixture.Create<bool>();
-            _mock.Setup(x => x.LoginAsync(It.IsAny<User>(), It.IsAny<bool>())).ReturnsAsync(token);
+            _mock.Setup(x => x.LoginAsync(It.IsAny<User>(), It.IsAny<bool>())).ReturnsAsync(loginModel);
 
             //Act
             var actualResult = _mock.Object.LoginAsync(user, isRegister);

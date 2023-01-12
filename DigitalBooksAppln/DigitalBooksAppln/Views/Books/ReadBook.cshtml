@@ -1,0 +1,21 @@
+﻿@model IEnumerable<DigitalBooksAppln.Models.Book>
+@{
+    ViewData["Title"] = "ReadBook";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    <form method="get" asp-action="ReadBook" asp-controller="Books">
+        <table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="text-align:center;color:blueviolet;font-family:cursive">@item.Title</td>
+                    <td style="text-align:center;color:blueviolet;font-family:cursive">@item.Author</td>
+                    <td>@item.BookContent</td>
+                </tr>
+            }
+        </table>
+    </form>
+</body>
+

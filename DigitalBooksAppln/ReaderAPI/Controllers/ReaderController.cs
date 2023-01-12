@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ReaderAPI.Models;
 using ReaderAPI.Services;
 
@@ -101,21 +100,6 @@ namespace ReaderAPI.Controllers
             try
             {
                 var response = await _reader.ReadBookAsync(subscriptionId, emailId);
-                return Ok(response);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest($"{ex.Message}");
-            }
-        }
-
-        [HttpGet]
-        [Route("Reader/Admin")]
-        public async Task<IActionResult> AdminAsync()
-        {
-            try
-            {
-                var response = await _reader.AdminViewAsync();
                 return Ok(response);
             }
             catch (Exception ex)

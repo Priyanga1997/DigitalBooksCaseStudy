@@ -1,18 +1,11 @@
 ﻿using Azure;
 using DigitalBooksAppln.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
 using Microsoft.Extensions.Azure;
 using Newtonsoft.Json;
-using System;
-using System.Configuration;
-using System.Net;
 using System.Net.Http.Headers;
-using System.Security.Policy;
 using System.Text;
-using System.Web.Http.Results;
-using static System.Net.WebRequestMethods;
 
 namespace DigitalBooksAppln.Controllers
 {
@@ -23,6 +16,14 @@ namespace DigitalBooksAppln.Controllers
         {
             _httpContext = httpContext;
         }
+
+        /// <summary>
+        /// This method is used to get book details of author
+        /// </summary>
+        /// <param name="emailId"></param>
+        /// <param name="token"></param>
+        /// <param name="username"></param>
+        /// <returns></returns>
         [Route("Books/Details")]
         public async Task<IActionResult> Details(string emailId, string? token, string username)
         {
@@ -35,14 +36,14 @@ namespace DigitalBooksAppln.Controllers
                 client.DefaultRequestHeaders.Clear();
                 token = _httpContext.HttpContext.Session.GetString("token");
                 emailId = _httpContext.HttpContext.Session.GetString("emailId");
-                username= _httpContext.HttpContext.Session.GetString("username");
-                HttpResponseMessage res = await client.GetAsync("api/Author/Author/Details?emailId="+emailId);
+                username = _httpContext.HttpContext.Session.GetString("username");
+                HttpResponseMessage res = await client.GetAsync("api/Author/Author/Details?emailId=" + emailId);
                 if (res.IsSuccessStatusCode)
                 {
-                     response = await res.Content.ReadAsStringAsync();
+                    response = await res.Content.ReadAsStringAsync();
                     books = JsonConvert.DeserializeObject<List<Book>>(response);
                     var bookResponse = from book in books
-                                       select (new Book() { Title = book.Title, Category = book.Category, Price = book.Price, Publisher = book.Publisher, BookContent = book.BookContent, Author = book.Author , Active= book.Active, BookId = book.BookId});
+                                       select (new Book() { Title = book.Title, Category = book.Category, Price = book.Price, Publisher = book.Publisher, BookContent = book.BookContent, Author = book.Author, Active = book.Active, BookId = book.BookId });
                     return View(bookResponse);
                 }
                 else
@@ -50,9 +51,12 @@ namespace DigitalBooksAppln.Controllers
                     return View();
                 }
             }
-            
         }
 
+        /// <summary>
+        /// This method is used to display create view
+        /// </summary>
+        /// <returns></returns>
         [Route("Books/Create")]
         [HttpGet]
         public async Task<IActionResult> Create()
@@ -60,6 +64,13 @@ namespace DigitalBooksAppln.Controllers
             return View();
         }
 
+        /// <summary>
+        /// This method is used to create books
+        /// </summary>
+        /// <param name="bookModel"></param>
+        /// <param name="token"></param>
+        /// <param name="emailId"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Books/Create")]
         public async Task<IActionResult> Create(Book bookModel, string? token, string? emailId)
@@ -88,13 +99,17 @@ namespace DigitalBooksAppln.Controllers
                 if (res.IsSuccessStatusCode)
                 {
                     response = res.Content.ReadAsStringAsync().Result;
-                   
+
                 }
             }
-            //TempData["SuccessMessage"] = "Book has been created Successfully";
             return RedirectToAction("Create", "Books");
         }
 
+        /// <summary>
+        /// This method is used to display Edit view
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Route("Books/Edit")]
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
@@ -108,7 +123,7 @@ namespace DigitalBooksAppln.Controllers
                     HttpResponseMessage res = await client.GetAsync("api/Author/Author/Edit?id=" + id);
                     if (res.IsSuccessStatusCode)
                     {
-                        var  response =  res.Content.ReadAsStringAsync();
+                        var response = res.Content.ReadAsStringAsync();
                         var books = JsonConvert.DeserializeObject<Book>(response.Result);
                         var bookResponse = books;
                         return View(bookResponse);
@@ -121,6 +136,12 @@ namespace DigitalBooksAppln.Controllers
             }
         }
 
+        /// <summary>
+        /// This method is used to edit the book details
+        /// </summary>
+        /// <param name="bookModel"></param>
+        /// <param name="bookId"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Books/Edit")]
         public async Task<IActionResult> Edit(Book bookModel, int bookId)
@@ -142,6 +163,11 @@ namespace DigitalBooksAppln.Controllers
             return RedirectToAction("Details", "Books", response);
         }
 
+        /// <summary>
+        /// This method is used to display delete view
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Route("Books/Delete")]
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
@@ -157,7 +183,7 @@ namespace DigitalBooksAppln.Controllers
                     {
                         var response = res.Content.ReadAsStringAsync();
                         var books = JsonConvert.DeserializeObject<Book>(response.Result);
-                        var bookResponse = books;                      
+                        var bookResponse = books;
                         return View(bookResponse);
                     }
                     else
@@ -168,9 +194,14 @@ namespace DigitalBooksAppln.Controllers
             }
         }
 
+        /// <summary>
+        /// This method is used to delete books
+        /// </summary>
+        /// <param name="bookId"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Books/Delete")]
-        public async Task<IActionResult> Delete1(int bookId)
+        public async Task<IActionResult> DeleteBook(int bookId)
         {
             string Baseurl = "https://localhost:7042/";
             string response = string.Empty;
@@ -189,6 +220,11 @@ namespace DigitalBooksAppln.Controllers
             return RedirectToAction("Details", "Books", response);
         }
 
+        /// <summary>
+        /// This method is used to block book
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Route("Books/BlockBook")]
         public async Task<dynamic> BlockBook(int id)
         {
@@ -208,6 +244,11 @@ namespace DigitalBooksAppln.Controllers
             return "Book has been blocked successfully";
         }
 
+        /// <summary>
+        /// This method is used to unblock book
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Route("Books/UnblockBook")]
         public async Task<dynamic> UnblockBook(int id)
         {
@@ -228,34 +269,28 @@ namespace DigitalBooksAppln.Controllers
             return "Book has been unblocked successfully";
         }
 
-        //[Route("Books/Search")]
-        //[HttpGet]
-        //public async Task<IActionResult> Search(List<Book> book)
-        //{
-        //    string Baseurl = "https://localhost:7042/";
-        //    string response = string.Empty;
-        //    using (var client = new HttpClient())
-        //    {
-        //        client.BaseAddress = new Uri(Baseurl);
-        //        client.DefaultRequestHeaders.Clear();
-        //        HttpResponseMessage res = await client.GetAsync("api/Author/Author/Index");
-        //        if (res.IsSuccessStatusCode)
-        //        {
-        //            response = res.Content.ReadAsStringAsync().Result;
-        //        }
-        //    }
-        //    return View(response);
-        //}
-
+        /// <summary>
+        /// This method is used to display search view
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Search()
         {
             return View();
         }
 
+        /// <summary>
+        /// This method is used by reader for getting searched book details
+        /// </summary>
+        /// <param name="sortOrder"></param>
+        /// <param name="title"></param>
+        /// <param name="category"></param>
+        /// <param name="price"></param>
+        /// <param name="publisher"></param>
+        /// <param name="author"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("Books/Search")]
-
-        public async Task<IActionResult> Search(string sortOrder, string title,string category, string price, string publisher, string author)
+        public async Task<IActionResult> Search(string sortOrder, string title, string category, string price, string publisher, string author)
         {
             ViewData["TitleSortParam"] = string.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
             ViewData["CategorySortParam"] = string.IsNullOrEmpty(sortOrder) ? "category_desc" : "";
@@ -268,7 +303,6 @@ namespace DigitalBooksAppln.Controllers
                 List<Book> books = new List<Book>();
                 client.BaseAddress = new Uri(BaseUrl);
                 client.DefaultRequestHeaders.Clear();
-                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage response = await client.GetAsync("api/Author/Author/Index");
                 if (response.IsSuccessStatusCode)
@@ -278,16 +312,13 @@ namespace DigitalBooksAppln.Controllers
                     var bookResponse = from book in books
                                        select (new Book() { Title = book.Title, Category = book.Category, Price = book.Price, Publisher = book.Publisher, BookContent = book.BookContent, Author = book.Author, Active = book.Active, BookId = book.BookId });
                     //Searching
-                    if (!string.IsNullOrEmpty(title)||!string.IsNullOrEmpty(category))
+                    if (!string.IsNullOrEmpty(title) || !string.IsNullOrEmpty(category))
                     {
                         bookResponse = bookResponse.Where(s => s.Title.ToLower().Contains(title.ToLower())
                                                || s.Category.ToLower().Contains(category.ToLower())
                                                || s.Price.ToString().Contains(price)
                                                || s.Publisher.ToLower().Contains(publisher.ToLower())
-                                               //|| s.BookContent.ToLower().Contains(book.ToLower())
                                                || s.Author.ToLower().Contains(author.ToLower()));
-                                               //|| s.Active.ToLower().Contains(search.ToLower())
-                                              // || s.BookId.ToString().Contains(search));
                     }
                     //sorting
                     switch (sortOrder)
@@ -331,10 +362,18 @@ namespace DigitalBooksAppln.Controllers
                 {
                     return View();
                 }
-
             }
         }
-        
+
+        /// <summary>
+        /// This method is used by reader to search books
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="category"></param>
+        /// <param name="price"></param>
+        /// <param name="publisher"></param>
+        /// <param name="author"></param>
+        /// <returns></returns>
         [Route("Books/SearchBooks")]
         public async Task<IActionResult> SearchBooks(string title, string category, int price, string publisher, string author)
         {
@@ -354,32 +393,11 @@ namespace DigitalBooksAppln.Controllers
             return RedirectToAction("Search", "Books", response);
         }
 
-        //[Route("Books/Subscribe")]
-        //[HttpGet]
-        //public async Task<IActionResult> Subscribe(int bookId)
-        //{
-        //    {
-        //        string Baseurl = "https://localhost:7011/";
-        //        using (var client = new HttpClient())
-        //        {
-        //            client.BaseAddress = new Uri(Baseurl);
-        //            client.DefaultRequestHeaders.Clear();
-        //            HttpResponseMessage res = await client.GetAsync("api/Reader/Reader/Subscribe?id=" + bookId);
-        //            if (res.IsSuccessStatusCode)
-        //            {
-        //                var response = res.Content.ReadAsStringAsync();
-        //                var books = JsonConvert.DeserializeObject<List<Subscription>>(response.Result);
-        //                var bookResponse = books;
-        //                return View(bookResponse);
-        //            }
-        //            else
-        //            {
-        //                return View();
-        //            }
-        //        }
-        //    }
-        //}
-
+        /// <summary>
+        /// This method is used by reader to subscribe books
+        /// </summary>
+        /// <param name="book"></param>
+        /// <returns></returns>
         [Route("Books/SubscribeBooks")]
         public async Task<IActionResult> SubscribeBooks(Book book)
         {
@@ -394,6 +412,7 @@ namespace DigitalBooksAppln.Controllers
                 subscription.EmailId = _httpContext.HttpContext.Session.GetString("emailId");
                 subscription.SubscriptionActive = "yes";
                 subscription.UserId = int.Parse(_httpContext.HttpContext.Session.GetString("userId"));
+                //subscription.BookContent = book.BookContent;
                 client.BaseAddress = new Uri(Baseurl);
                 client.DefaultRequestHeaders.Clear();
                 var content = new StringContent(JsonConvert.SerializeObject(subscription), Encoding.UTF8, "application/json");
@@ -404,9 +423,14 @@ namespace DigitalBooksAppln.Controllers
                     var subscribeBooks = JsonConvert.DeserializeObject<Subscription>(response);
                 }
             }
-          return RedirectToAction("Subscribe", "Books", response);
+            return RedirectToAction("Subscribe", "Books", response);
         }
 
+        /// <summary>
+        /// This method is used to get all subscription details
+        /// </summary>
+        /// <param name="emailId"></param>
+        /// <returns></returns>
         [Route("Books/Subscribe")]
         [HttpGet]
         public async Task<IActionResult> Subscribe(string emailId)
@@ -414,27 +438,32 @@ namespace DigitalBooksAppln.Controllers
             string response = string.Empty;
             List<Subscription> subscriptions = new List<Subscription>();
             string Baseurl = "https://localhost:7011/";
-                using (var client = new HttpClient())
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Clear();
+                emailId = _httpContext.HttpContext.Session.GetString("emailId");
+                HttpResponseMessage res = await client.GetAsync("api/Reader/Reader/GetAllSubscriptionDetails?emailId=" + emailId);
+                if (res.IsSuccessStatusCode)
                 {
-                    client.BaseAddress = new Uri(Baseurl);
-                    client.DefaultRequestHeaders.Clear();
-                    emailId = _httpContext.HttpContext.Session.GetString("emailId");
-                HttpResponseMessage res = await client.GetAsync("api/Reader/Reader/GetAllSubscriptionDetails?emailId="+emailId);
-                    if (res.IsSuccessStatusCode)
-                    {
-                        response = await res.Content.ReadAsStringAsync();
-                        subscriptions = JsonConvert.DeserializeObject<List<Subscription>>(response);
-                        var subscriptionResponse = from subscription in subscriptions
-                                           select (new Subscription() { Title = subscription.Title,Author = subscription.Author, SubscriptionActive = subscription.SubscriptionActive, BookId = subscription.BookId ,SubscriptionId=subscription.SubscriptionId});
-                        return View(subscriptionResponse);
-                    }
-                    else
-                    {
-                        return View();
-                    }
+                    response = await res.Content.ReadAsStringAsync();
+                    subscriptions = JsonConvert.DeserializeObject<List<Subscription>>(response);
+                    var subscriptionResponse = from subscription in subscriptions
+                                               select (new Subscription() { Title = subscription.Title, Author = subscription.Author, SubscriptionActive = subscription.SubscriptionActive, BookId = subscription.BookId, SubscriptionId = subscription.SubscriptionId });
+                    return View(subscriptionResponse);
+                }
+                else
+                {
+                    return View();
                 }
             }
+        }
 
+        /// <summary>
+        /// This method is used to cancel subscription
+        /// </summary>
+        /// <param name="subscriptionId"></param>
+        /// <returns></returns>
         [Route("Books/CancelSubscription")]
         public async Task<IActionResult> CancelSubscription(int subscriptionId)
         {
@@ -446,22 +475,27 @@ namespace DigitalBooksAppln.Controllers
                 client.BaseAddress = new Uri(Baseurl);
                 client.DefaultRequestHeaders.Clear();
                 var content = new StringContent(JsonConvert.SerializeObject(subscriptionId), Encoding.UTF8, "application/json");
-                HttpResponseMessage res = await client.PutAsync("api/Reader/Reader/CancelSubscription?subscriptionId=" + subscriptionId,content );
-                    if (res.IsSuccessStatusCode)
-                    {
-                        response = res.Content.ReadAsStringAsync().Result;
-                    }
+                HttpResponseMessage res = await client.PutAsync("api/Reader/Reader/CancelSubscription?subscriptionId=" + subscriptionId, content);
+                if (res.IsSuccessStatusCode)
+                {
+                    response = res.Content.ReadAsStringAsync().Result;
+                }
                 TempData["SuccessMessage"] = "Book has been unsubscribed Successfully";
                 return RedirectToAction("Subscribe", "Books", response);
             }
         }
 
+        /// <summary>
+        /// This method is used to read book
+        /// </summary>
+        /// <param name="subscriptionId"></param>
+        /// <param name="emailId"></param>
+        /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> ReadBook(int subscriptionId,string emailId)
+        public async Task<IActionResult> ReadBook(int subscriptionId, string emailId)
         {
             string response = string.Empty;
-            List<Subscription> subscriptions = new List<Subscription>();
-            var books = new Book();
+            List<Book> books = new List<Book>();
             string Baseurl = "https://localhost:7011/";
             using (var client = new HttpClient())
             {
@@ -469,16 +503,26 @@ namespace DigitalBooksAppln.Controllers
                 client.DefaultRequestHeaders.Clear();
                 emailId = _httpContext.HttpContext.Session.GetString("emailId");
                 string param = $"emailId={emailId}&subscriptionId={subscriptionId}";
-                HttpResponseMessage res = await client.GetAsync("api/Reader/Reader/ReadBook?"+param);
+                HttpResponseMessage res = await client.GetAsync("api/Reader/Reader/ReadBook?" + param);
                 if (res.IsSuccessStatusCode)
                 {
                     response = await res.Content.ReadAsStringAsync();
-                    books = JsonConvert.DeserializeObject<Book>(response);
+                    books = JsonConvert.DeserializeObject<List<Book>>(response);
+                    var bookResponse = from book in books
+                                               select (new Book() { Title = book.Title, Author = book.Author,BookContent=book.BookContent});
+                    return View(bookResponse);
                 }
-            }
-            return RedirectToAction("Subscribe", "Books", books);
+                else
+                {
+                    return View();
+                }
+            }           
         }
 
+        /// <summary>
+        /// This method is used by admin to view all the subscription details
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("Books/AdminView")]
         public async Task<IActionResult> AdminView()

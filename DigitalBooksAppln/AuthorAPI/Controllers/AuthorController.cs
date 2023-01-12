@@ -1,19 +1,6 @@
 ﻿using AuthorAPI.Services;
-using Azure.Storage.Blobs;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Azure;
-using Azure.Storage.Blobs;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
-using NuGet.Protocol.Core.Types;
-using System.Collections.Generic;
-using System.Net.Http.Headers;
-using System.Text;
 using AuthorAPI.Models;
 
 namespace AuthorAPI.Controllers
@@ -70,29 +57,8 @@ namespace AuthorAPI.Controllers
         [Route("Author/Create")]
         public async Task<IActionResult> CreateAsync([Bind("Title,Category,Price,Publisher,Active,BookContent,Author,EmailId")] Book book)
         {
-            //string dbPath = string.Empty;
             try
             {
-                //var file = Request.Form.Files[0];
-                //if (file.Length > 0)
-                //{
-                //    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                //    var _filename = Path.GetFileNameWithoutExtension(fileName);
-                //    fileName = _filename + DateTime.Now.ToString("yyyyMMddHHmmss") + ".jpg";
-                //    dbPath = fileName;
-                //    string connectionstring = "DefaultEndpointsProtocol=https;AccountName=digitalbooksa;AccountKey=bhp2zcXA97ZXH/caVC6cFIVnAUIZ8eJbN1eZEZIMTkxIYtv6FW4uyEbtuOHhwnl5C0o/Mjk+3l/I+AStSsHLwQ==;EndpointSuffix=core.windows.net";
-                //    string containerName = "testcontainer";
-                //    BlobContainerClient container = new BlobContainerClient(connectionstring, containerName);
-                //    var blob = container.GetBlobClient(fileName);
-                //    var blobstream = file.OpenReadStream();
-                //    await blob.UploadAsync(blobstream);
-                //    var URI = blob.Uri.AbsoluteUri;
-
-                //    if (!ModelState.IsValid)
-                //    {
-                //        return BadRequest();
-                //    }
-                //}
                 var response = await _author.CreateAsync(book);
                 return Ok(response);
             }

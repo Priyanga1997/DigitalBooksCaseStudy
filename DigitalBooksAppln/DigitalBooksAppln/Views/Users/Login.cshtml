@@ -3,7 +3,14 @@
     ViewData["Title"] = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style type="text/css">
+    .main {
+        background-image: url('/Images/Login.jpg');
+        margin: 0;
+    }
+</style>
 
+<div class="main">
 <center><h3 style="color:blueviolet">Login</h3></center>
 <div class="container">
     <div class="row mt-lg-6">
@@ -14,19 +21,19 @@
             <form class="form-horizontal" asp-action="Login" method="post">
                 <div class="form-group">
                     <label asp-for="UserName"></label>
-                    <input type="text" asp-for="UserName" placeholder="Enter username" class="form-control" autocomplete="off" />
+                    <input type="text" asp-for="UserName" placeholder="Enter username" class="form-control" autocomplete="off" required />
                 </div>
                 <div class="form-group">
                     <label asp-for="EmailId"></label>
-                    <input type="text" asp-for="EmailId" placeholder="Enter EmailId" class="form-control" autocomplete="off" />
+                    <input type="text" asp-for="EmailId" placeholder="Enter EmailId" class="form-control" autocomplete="off" required/>
                 </div>
                 <div class="form-group">
                     <label asp-for="Password"></label>
-                    <input type="password" asp-for="Password" placeholder="Enter password" class="form-control" autocomplete="off" />
+                    <input type="password" asp-for="Password" placeholder="Enter password" class="form-control" autocomplete="off" required/>
                 </div>
                 <div class="form-group">
                     <label asp-for="UserType"></label><br />
-                    <select name="usertype" id="usertype" style="padding-right:242px;padding-top:9px;padding-bottom:9px;">
+                    <select name="usertype" id="usertype" style="padding-right:242px;padding-top:9px;padding-bottom:9px;" required>
                         <option value="">--Select Usertype--</option>
                         <option value="author">Author</option>
                         <option value="reader">Reader</option>
@@ -42,6 +49,7 @@
             </form>
         </div>
     </div>
+</div>
 </div>
 
 

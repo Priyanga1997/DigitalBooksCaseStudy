@@ -12,12 +12,10 @@ namespace DigitalBooksAppln.Services
     {
         DigitalBooksContext _db;
         private IConfiguration _config;
-        //private IHttpContextAccessor _httpContextAccessor;
         public UsersService(DigitalBooksContext db, IConfiguration config)
         {
             _db = db;
             _config = config;
-            //_httpContextAccessor = httpContextAccessor;
         }
         public async Task<LoginModel> LoginAsync(User login, bool IsRegister)
         {
@@ -41,6 +39,7 @@ namespace DigitalBooksAppln.Services
                 return loginModel;
             }
         }
+
         private User AuthenticateUser(User login, bool IsRegister)
         {
             if (IsRegister)
@@ -61,6 +60,7 @@ namespace DigitalBooksAppln.Services
                 }
             }
         }
+
         private string GenerateToken(User login)
         {
             var claims = new List<Claim>
