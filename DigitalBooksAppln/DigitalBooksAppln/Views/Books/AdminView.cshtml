@@ -1,0 +1,82 @@
+﻿@model IEnumerable<DigitalBooksAppln.Models.Subscription>
+@{
+    ViewData["Title"] = "AdminView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<head>
+</head>
+<center><h3 style="color:blueviolet">AdminView</h3></center>
+    <body>
+<table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.SubscriptionId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BookId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EmailId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SubscriptionActive)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Author)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var item in Model)
+                {
+                  <tr>
+                      <td>
+                            @Html.DisplayFor(modelItem => item.SubscriptionId)
+                       </td>
+                       <td>
+                            @Html.DisplayFor(modelItem => item.BookId)
+                        </td>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                                                        </td>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.EmailId)
+                                                        </td>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.SubscriptionActive)
+                                                        </td>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.UserId)
+                                                        </td>
+                                                        <td>
+                            @Html.DisplayFor(modelItem => item.Author)
+                                                        </td>
+                                                    </tr>
+                }
+            }
+            else
+            {
+                                <tr>
+                                    <td colspan="6">
+                                        <div>
+                                            No Books Available at this moment!!
+                                        </div>
+                                    </td>
+                                </tr>
+            }
+
+        </tbody>
+    </table>
+</body>
+</html>

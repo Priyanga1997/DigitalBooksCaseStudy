@@ -1,0 +1,14 @@
+D:\CaseStudy\DigitalBooksApplication\CommonLibrary\bin\Debug\net6.0\CommonLibrary.deps.json
+D:\CaseStudy\DigitalBooksApplication\CommonLibrary\bin\Debug\net6.0\CommonLibrary.runtimeconfig.json
+D:\CaseStudy\DigitalBooksApplication\CommonLibrary\bin\Debug\net6.0\CommonLibrary.dll
+D:\CaseStudy\DigitalBooksApplication\CommonLibrary\bin\Debug\net6.0\CommonLibrary.pdb
+D:\CaseStudy\DigitalBooksApplication\CommonLibrary\obj\Debug\net6.0\CommonLibrary.csproj.AssemblyReference.cache
+D:\CaseStudy\DigitalBooksApplication\CommonLibrary\obj\Debug\net6.0\CommonLibrary.GeneratedMSBuildEditorConfig.editorconfig
+D:\CaseStudy\DigitalBooksApplication\CommonLibrary\obj\Debug\net6.0\CommonLibrary.AssemblyInfoInputs.cache
+D:\CaseStudy\DigitalBooksApplication\CommonLibrary\obj\Debug\net6.0\CommonLibrary.AssemblyInfo.cs
+D:\CaseStudy\DigitalBooksApplication\CommonLibrary\obj\Debug\net6.0\CommonLibrary.csproj.CoreCompileInputs.cache
+D:\CaseStudy\DigitalBooksApplication\CommonLibrary\obj\Debug\net6.0\CommonLibrary.dll
+D:\CaseStudy\DigitalBooksApplication\CommonLibrary\obj\Debug\net6.0\refint\CommonLibrary.dll
+D:\CaseStudy\DigitalBooksApplication\CommonLibrary\obj\Debug\net6.0\CommonLibrary.pdb
+D:\CaseStudy\DigitalBooksApplication\CommonLibrary\obj\Debug\net6.0\CommonLibrary.genruntimeconfig.cache
+D:\CaseStudy\DigitalBooksApplication\CommonLibrary\obj\Debug\net6.0\ref\CommonLibrary.dll

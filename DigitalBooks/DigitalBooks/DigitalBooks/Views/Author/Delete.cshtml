@@ -1,0 +1,70 @@
+﻿@model DigitalBooks.Models.Book
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h4>Delete Book Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Publisher)
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.BookContent)
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+        @*@foreach (var book in Model)
+        {
+            <dd>
+                @Html.DisplayFor(modelItem => book.Title)
+            </dd>
+
+            <dd>
+                @Html.DisplayFor(modelItem => book.Category)
+            </dd>
+
+            <dd>
+                @Html.DisplayFor(modelItem => book.Price)
+            </dd>
+
+            <dd>
+                @Html.DisplayFor(modelItem => book.Publisher)
+            </dd>
+
+            <dd>
+                @Html.DisplayFor(modelItem => book.Active)
+            </dd>
+
+            <dd>
+                @Html.DisplayFor(modelItem => book.BookContent)
+            </dd>
+
+            <dd>
+                @Html.DisplayFor(modelItem => book.Author)
+            </dd>
+        }*@
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden"/>
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
+

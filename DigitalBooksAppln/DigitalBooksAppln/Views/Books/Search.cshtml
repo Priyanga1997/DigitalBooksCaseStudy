@@ -1,0 +1,105 @@
+﻿@model IEnumerable<DigitalBooksAppln.Models.Book>
+@inject IHttpContextAccessor context
+@{
+    ViewData["Title"] = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<head>
+    <style>
+        .search {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    @*<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"> </script>*@
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("body").on("click", #btnSubscribe, function () {
+                var books = new Array();
+                $("#searchTable TBODY TR").each(function () {
+                    var row = $(this);
+                    var book = {};
+                    book.Title = row.find("TD").eq(0).html();
+                    //book.Author = row.find("TD").eq(4).html();
+                    //subscription.EmailId = row.find("TD").eq(2).html();
+                    //book.BookId = row.find("TD").eq(6).html();
+                    books.push(book);
+                });
+
+                //DigitalBooksAppln.Models.Book = subscription;
+
+                //Send the JSON array to Controller using AJAX.
+                $.ajax({
+                    type: "POST",
+                    url: @Url.Action("Subscribe", "Books")',
+                    data: JSON.stringify({Book:books}),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        alert(response+ "subscription added.");
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+
+<body>
+    <div>
+    <span style="float:right">
+        Welcome
+        <b>@context.HttpContext.Session.GetString("username")</b>
+    </span>
+    </div>
+    <div>
+        <span style="font-size:18px;font-family:cursive">
+        @Html.ActionLink("View My Subscriptions", "Subscribe", new Subscription{EmailId=@context.HttpContext.Session.GetString("emailId")})
+    </span>
+    </div>
+    <center><h3>Search Books</h3></center>
+    <div class="search">
+        <form method="get" asp-controller="Books" asp-action="Search">
+            Book Title<input type="text" name="Title" value="Title" class="form-control" /><br />
+            Category<input type="text" name="Category" value="Category" class="form-control" /><br />
+            Price<input type="text" name="Price" value="Price" class="form-control" /><br />
+            Publisher<input type="text" name="Publisher" value="Publisher" class="form-control" /><br />
+            Author<input type="text" name="Author" value="Author" class="form-control" /><br />
+            <input type="submit" value="Search" class="btn btn-primary"/>
+        </form>
+    </div><br/>
+    <div>
+    <table cellpadding="0" cellspacing="0" class="table table-striped" id="searchTable">
+        <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Publisher</th>
+            <th>Author</th>
+            <th>Active</th>
+            <th>BookId</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Category</td>
+                <td>@item.Price</td>
+                <td>@item.Publisher</td>
+                <td>@item.Author</td>
+                <td>@item.Active</td>
+                <td>@item.BookId</td>
+               @* <td><a asp-action="Subscribe" asp-controller="Books" method="post" asp-route-id="@item.BookId" class="btn btn-primary">Subscribe</a></td>*@
+                    <td class="btn btn-primary">@Html.ActionLink("Subscribe", "SubscribeBooks", new Book{Title=item.Title,Author=item.Author,BookId=item.BookId})</td>
+            </tr>
+        }
+    </table>
+    </div>
+</body>
+</html>
+

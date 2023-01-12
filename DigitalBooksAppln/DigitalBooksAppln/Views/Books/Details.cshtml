@@ -1,0 +1,160 @@
+﻿@model IEnumerable<DigitalBooksAppln.Models.Book>
+@{
+    //ViewData["Title"] = "Details";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <h4>My Books</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BookId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Category)
+                    </th>
+                    @* <th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>*@
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Publisher)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Active)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BookContent)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Author)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+           @Html.DisplayFor(modelItem => item.BookId)
+         </td>
+        <td>
+        @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+        @Html.DisplayFor(modelItem => item.Category)
+        </td>
+       @* <td>
+        @Html.DisplayFor(modelItem => item.Image)
+        </td>*@
+        <td>
+        @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+        @Html.DisplayFor(modelItem => item.Publisher)
+        </td>
+        <td>
+        @Html.DisplayFor(modelItem => item.Active)
+        </td>
+        <td>
+        @Html.DisplayFor(modelItem => item.BookContent)
+        </td>
+        <td>
+        @Html.DisplayFor(modelItem => item.Author)
+        </td>
+        <td>
+        <a asp-action="Edit" asp-route-id="@item.BookId" class="btn btn-primary">Edit</a>
+        <a asp-action="Delete" asp-route-id="@item.BookId" class="btn btn-danger">Delete</a>
+        <a asp-action="BlockBook" asp-route-id="@item.BookId" class="btn btn-danger">Block</a>
+        <a asp-action="UnblockBook" asp-route-id="@item.BookId" class="btn btn-primary">Unblock</a>
+        </td>
+        </tr>
+        }
+       
+        </tbody>
+        </table>  
+</body>
+  @if(TempData["SuccessMessage"] != null)
+    {
+      <div class="modal fade" id="myModal">
+       <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Modal Heading</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div asp-validation-summary="All"></div>
+                <div id="Message"></div>
+
+
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+        </div>
+        </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+
+    </script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+                $(document).ready(function () {
+
+                    var msg = "@TempData["SuccessMessage"]";
+                    //Check the condition if its not empty
+                    if (msg != "") {
+
+                        $("#SuccessMessage").text(msg);
+                        $('#myModal').modal('show');
+                    }
+
+                });
+            </script>
+}
+        </html>
+@*@section Scripts {
+    <script type="text/javascript">
+        function openSuccessModal(strMessage) {
+            var myDiv = document.getElementById("MyModalSuccessAlertBody");
+            myDiv.innerHTML = strMessage;
+            $('#myModalSuccess').modal('show');
+        }
+        $(document).ready(function () {
+            var msg = "@TempData["SuccessMessage"]";
+            if (msg)
+                openSuccessModal(msg);
+        }
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }*@
+
+
+
+

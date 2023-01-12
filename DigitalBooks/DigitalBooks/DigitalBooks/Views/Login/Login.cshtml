@@ -1,0 +1,50 @@
+﻿@model DigitalBooks.Models.Login
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+    function redirectOnClick() {
+        document.location = 'Author/Details';
+    }
+</script>
+
+<div class="container">
+    <div class="row mt-lg-6">
+        <div class="col-4 offset-4 border border-primary rounded pl-5 pr-5 pb-5">
+            <div class="text-center">
+                <a class="text-light btn btn-primary font-weight-bold" asp-controller="Login">Sign In</a>
+            </div>
+            <form class="form-horizontal" asp-action="Login">
+                <div class="form-group">
+                    <label asp-for="UserName"></label>
+                    <input type="text" asp-for="UserName" placeholder="Enter username" class="form-control" autocomplete="off" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmailId"></label>
+                    <input type="text" asp-for="EmailId" placeholder="Enter EmailId" class="form-control" autocomplete="off" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <input type="password" asp-for="Password" placeholder="Enter password" class="form-control" autocomplete="off" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="UserType"></label><br/>
+                    <select name="usertype" id="usertype" class="form-control">
+                        <option value="">--Select Usertype--</option>
+                        <option value="author">Author</option>
+                        <option value="reader">Reader</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-block btn-primary mb-2" value="Login" onClick='redirectOnClick()'/>
+                </div>
+                <div>
+                   <span>Need an account? <a asp-controller="Login" asp-action="Register">Sign Up</a></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

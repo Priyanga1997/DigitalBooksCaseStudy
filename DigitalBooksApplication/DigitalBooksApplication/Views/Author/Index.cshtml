@@ -1,0 +1,150 @@
+﻿@model IEnumerable<BookMicroservice.Models.Book>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Index";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    @*<style>
+        .search {
+            background-color: lightseagreen;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 50px;
+        }
+    </style>*@
+</head>
+
+@*<div class="search">*@
+    @*<form method="get" asp-action="Get" asp-controller="Author">
+        <div class="input-group md-form form-sm form-2 pl-0">*@
+            @*<input name="searchText" class="form-control my-0 py-1 red-border" type="text" placeholder="Search Books" aria-label="Search" />*@
+           @* @Html.TextBox("searchValue")*@
+      @*<input type="text" name="searchValue" /><br /><br/>
+        <input class="btn btn-success" type="submit" value="Search" />*@
+@*        <span class="btn-group">
+            <input class="form-control" type="search" name="SearchText" placeholder="Search Books"/>
+            <input class="p-1 ml-2 btn btn-sm btn-info" type="submit" value="Search" />
+        </span>*@
+  @*     </div>
+    </form>*@
+@*</div>*@
+@*<div class="container">
+    <div class="row">
+        <div class="col-md-3 col-sm-6">
+            <div class="card">
+                <div class="card-block">
+                    <img src="" class="img-fluid" />
+                    <div class="card-title">
+                        <h4>@Model.Title</h4>
+                    </div>
+                    <div class="card-text">
+                        @Model.Category
+                    </div>
+                    <div class="card-text">
+                        @Model.Price
+                    </div>
+                    <div class="card-text">
+                        @Model.Author
+                    </div>
+                    <div class="card-text">
+                        @Model.BookContent
+                    </div>
+                    <a style="margin-top:10px;" href="#" class="btn btn-success">View</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+<body>
+    <p>
+        <a asp-controller="Author" asp-action="Create">Create New</a>
+    </p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Category)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Publisher)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Active)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BookContent)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Author)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Image)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Publisher)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Active)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BookContent)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Author)
+                    </td>
+                    <td>
+                       @* <a asp-action="Edit" asp-route-id="@item.BookId" class="btn btn-primary">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.BookId" class="btn btn-success">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.BookId" class="btn btn-danger">Delete</a>*@
+                       @* <a asp-action="BlockBook" asp-route-id="@item.BookId" class="btn btn-primary">Block</a>
+                        <a asp-action="UnblockBook" asp-route-id="@item.BookId" class="btn btn-primary">Unblock</a>*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
+@*@section scripts{
+    <script>
+        $(function(){
+            $("#basic-text1").click(function(){
+                $("Form").submit();
+            })
+            });
+        }
+    </script>
+}*@

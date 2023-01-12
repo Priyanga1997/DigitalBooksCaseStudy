@@ -1,0 +1,37 @@
+﻿@model IEnumerable<DigitalBooksAppln.Models.Subscription>
+@{
+    ViewData["Title"] = "Subscribe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<center><h3 style="color:blueviolet">Subscribed Book Details</h3></center>
+<html>
+<body>
+    <form asp-action="Subscribe" asp-controller="Books" method="get">
+<table cellpadding="0" cellspacing="0" class="table table-striped">
+    <tr>
+        <th>SubscriptionId</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>SubscriptionActiveStatus</th>
+        <th>BookId</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.SubscriptionId</td>
+            <td>@item.Title</td>
+            <td>@item.Author</td>
+            <td>@item.SubscriptionActive</td>
+            <td>@item.BookId</td>
+                    <td>
+                    <td class="btn btn-primary">@Html.ActionLink("Cancel", "CancelSubscription", new Subscription{Title=item.Title,Author=item.Author,SubscriptionId=item.SubscriptionId})</td></td>
+                    @*<td class="btn btn-primary">@Html.ActionLink("Read Book", "ReadBook", new Subscription{SubscriptionId=item.SubscriptionId})</td>*@
+        </tr>
+    }
+</table>
+    </form>
+</body>
+</html>
+

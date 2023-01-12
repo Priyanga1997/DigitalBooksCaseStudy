@@ -1,0 +1,103 @@
+﻿@model IEnumerable<UserMicroservice.Models.Book>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+  <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+
+@{
+    if (ViewBag.Error == null)
+    {
+        <form method="get" asp-action="Index" asp-controller="Home">
+            <div>
+                <input type="text" name="searchValue" style="padding-right:300px"/>
+                <input class="btn btn-success" type="submit" value="Search" />
+            </div>
+        </form>
+
+        <body>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Category)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Image)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Price)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Publisher)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Active)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.BookContent)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Author)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Category)
+                            </td>
+                            <td>
+                                <img src="https://digitalbooksa.blob.core.windows.net/testcontainer/" alt="Image" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Publisher)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Active)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BookContent)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Author)
+                            </td>
+                            <td>
+                                @* <a asp-action="Edit" asp-route-id="@item.BookId" class="btn btn-primary">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.BookId" class="btn btn-success">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.BookId" class="btn btn-danger">Delete</a>*@
+                                @* <a asp-action="BlockBook" asp-route-id="@item.BookId" class="btn btn-primary">Block</a>
+                    <a asp-action="UnblockBook" asp-route-id="@item.BookId" class="btn btn-primary">Unblock</a>*@
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </body>
+    }
+}
+</html>

@@ -1,0 +1,143 @@
+﻿@model DigitalBooksAppln.Models.Book
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+    <style>
+        .edit {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <center><h3>Edit Book Details</h3></center>
+    <hr />
+    <div class="edit">
+        <div class="col-md-4">
+            <form asp-action="Edit" asp-controller="Books" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Title" />
+                <div class="form-group">
+                    <label asp-for="BookId" class="control-label"></label>
+                    <input asp-for="BookId" class="form-control" />
+                    <span asp-validation-for="BookId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Category" class="control-label"></label>
+                    <select asp-for="Category" style="padding-right:262px;padding-top:9px;padding-bottom:9px;">
+                        <option value="">--Select Category--</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="Spirituality">Spirituality</option>
+                        <option value="Fiction">Fiction</option>
+                        <option value="Science Fiction">Science Fiction</option>
+                        <option value="Thriller">Thriller</option>
+                    </select>
+                    <span asp-validation-for="Category" class="text-danger"></span>
+                </div>
+               @* <div class="form-group">
+                    <label asp-for="Image" class="control-label"></label>
+                    <div class="custom-file">
+                        <input asp-for="Image" class="custom-file-input" id="customFile" class="form-control" />
+                    </div>
+                </div>*@
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Publisher" class="control-label"></label>
+                    <input asp-for="Publisher" class="form-control" />
+                    <span asp-validation-for="Publisher" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Active" class="control-label"></label>
+                    <select asp-for="Active" style="padding-right:242px;padding-top:9px;padding-bottom:9px;">
+                        <option value="">--Select Active Status--</option>
+                        <option value="yes">yes</option>
+                        <option value="no">no</option>
+                    </select>
+                    <span asp-validation-for="Active" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BookContent" class="control-label"></label>
+                    <input asp-for="BookContent" class="form-control" />
+                    <span asp-validation-for="BookContent" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Author" class="control-label"></label>
+                    <input asp-for="Author" class="form-control" />
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmailId" class="control-label"></label>
+                    <input asp-for="EmailId" class="form-control" />
+                    <span asp-validation-for="EmailId" class="text-danger"></span>
+                </div><br/>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div style="text-align:center">
+        <a asp-action="Index" asp-controller="Home">Back to List</a>
+    </div>
+
+@*    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }*@
+    
+    @section Scripts {
+        <script type="text/javascript">
+            function openSuccessModal(strMessage){
+                var myDiv = document.getElementById("MyModalSuccessAlertBody");
+                myDiv.innerHTML=strMessage;
+                $('#myModalSuccess').modal('show');
+            }
+            $(document).ready(function(){
+                var msg="@TempData["SuccessMessage"]";
+                if(msg)
+                openSuccessModal(msg);
+            }
+        </script>
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+     <!--Success Dialog Start-->
+          @*  <div id="myModalSuccess" class="modal fade text-width:30%;" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Information</h2>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div id="MyModalSuccessAlertBody" class="modal-body alert alert-success">
+                            This is a modal body.
+                        </div>
+                        <div class="modal-footer">
+                            &nbsp;
+                            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                </div>
+            </div>*@
+            <!--Success Dialog End-->
+</body>
+</html>
+

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<DigitalBooks.Models.Book>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-controller="Author" asp-action="Create">Create new</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Publisher)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Active)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookContent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var book in Model)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => book.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => book.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => book.Image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => book.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => book.Publisher)
+            <td>
+                @Html.DisplayFor(modelItem => book.Active)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem=>book.BookContent)
+            </td>
+            <td>
+                <a asp-action="Edit">Edit</a>
+                <a asp-action="Details">Details</a>
+                <a asp-action="Delete">Delete</a>
+            </td>
+        </tr>
+            }
+    </tbody>
+</table>
+

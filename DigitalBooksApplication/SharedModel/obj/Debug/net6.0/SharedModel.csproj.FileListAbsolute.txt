@@ -1,0 +1,15 @@
+D:\CaseStudy\DigitalBooksApplication\SharedModel\bin\Debug\net6.0\SharedModel.deps.json
+D:\CaseStudy\DigitalBooksApplication\SharedModel\bin\Debug\net6.0\SharedModel.dll
+D:\CaseStudy\DigitalBooksApplication\SharedModel\bin\Debug\net6.0\SharedModel.pdb
+D:\CaseStudy\DigitalBooksApplication\SharedModel\bin\Debug\net6.0\Common.dll
+D:\CaseStudy\DigitalBooksApplication\SharedModel\bin\Debug\net6.0\Common.pdb
+D:\CaseStudy\DigitalBooksApplication\SharedModel\obj\Debug\net6.0\SharedModel.csproj.AssemblyReference.cache
+D:\CaseStudy\DigitalBooksApplication\SharedModel\obj\Debug\net6.0\SharedModel.GeneratedMSBuildEditorConfig.editorconfig
+D:\CaseStudy\DigitalBooksApplication\SharedModel\obj\Debug\net6.0\SharedModel.AssemblyInfoInputs.cache
+D:\CaseStudy\DigitalBooksApplication\SharedModel\obj\Debug\net6.0\SharedModel.AssemblyInfo.cs
+D:\CaseStudy\DigitalBooksApplication\SharedModel\obj\Debug\net6.0\SharedModel.csproj.CoreCompileInputs.cache
+D:\CaseStudy\DigitalBooksApplication\SharedModel\obj\Debug\net6.0\SharedModel.csproj.CopyComplete
+D:\CaseStudy\DigitalBooksApplication\SharedModel\obj\Debug\net6.0\SharedModel.dll
+D:\CaseStudy\DigitalBooksApplication\SharedModel\obj\Debug\net6.0\refint\SharedModel.dll
+D:\CaseStudy\DigitalBooksApplication\SharedModel\obj\Debug\net6.0\SharedModel.pdb
+D:\CaseStudy\DigitalBooksApplication\SharedModel\obj\Debug\net6.0\ref\SharedModel.dll
