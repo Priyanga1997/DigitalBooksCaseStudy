@@ -20,8 +20,8 @@ namespace AzureFunctions
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
-            //string connectionString = "Server=tcp:server-test-01.database.windows.net,1433;Initial Catalog=DigitalBooks;Persist Security Info=False;User ID=Priyanga;Password=Password01;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-            string connectionString = "Data Source=CTSDOTNET912;Initial Catalog=DigitalBooks;User ID=sa;Password=pass@word1;TrustServerCertificate=True;";
+            string connectionString = "Server=tcp:digitalbooksserver.database.windows.net,1433;Initial Catalog=digitalbooks;Persist Security Info=False;User ID=Priyanga;Password=Password@01;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            //string connectionString = "Data Source=CTSDOTNET912;Initial Catalog=DigitalBooks;User ID=sa;Password=pass@word1;TrustServerCertificate=True;";
             string query = "Select * from [dbo].[Subscription] sub inner join [dbo].[Book] b on sub.bookid= b.bookid inner join [dbo].[User] u on sub.userid= u.userid";
             List<Subscription> subscriptions = new List<Subscription>();
             using (SqlConnection connection = new SqlConnection(connectionString))

@@ -56,7 +56,7 @@ namespace DigitalBooksAppln.Controllers
                     }
                     if (login.UserType == "admin")
                     {
-                        return RedirectToAction("AdminView", "Books", new { token = userdata, emailId = login.EmailId, username = login.UserName });
+                        return RedirectToAction("AdminView", "Books", new { token = userdata, emailId = login.EmailId, username = login.UserName ,userId=login.UserId});
                     }
                     response = Ok(new { token = userdata });
                 }

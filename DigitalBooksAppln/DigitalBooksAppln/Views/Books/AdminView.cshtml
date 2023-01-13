@@ -6,6 +6,13 @@
 
 <html>
 <head>
+    <style>
+        .back {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 </head>
 <center><h3 style="color:blueviolet">AdminView</h3></center>
 <body>
@@ -78,5 +85,8 @@
 
         </tbody>
     </table>
+    <div class="back">
+        <a asp-action="Index" a asp-controller="Home" style="font-size:18px;font-family:cursive">Back to List</a>
+    </div>
 </body>
 </html>

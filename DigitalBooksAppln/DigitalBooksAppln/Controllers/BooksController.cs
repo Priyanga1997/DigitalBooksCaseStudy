@@ -524,7 +524,7 @@ namespace DigitalBooksAppln.Controllers
         public async Task<IActionResult> AdminView()
         {
             string Baseurl = "http://localhost:7224/api/Function1";
-            string url = "https://azurefunctions20230111173852.azurewebsites.net/api/Function1?code=mqdMXRmrnS5WO09ySfV1RHzAIQazGcLYBQZoj-_en0HJAzFu5yVV_A==";
+            string url = "https://azurefunctions20230113123419.azurewebsites.net/api/Function1?code=wXL8AkdtuqDOxhmTEMHFPjPFIeuLpJDfCt7N1-ofl-InAzFuWlDkNA==";
             string response = string.Empty;
             List<Subscription> subscriptions = new List<Subscription>();
             using (var client = new HttpClient())
