@@ -531,7 +531,7 @@ namespace DigitalBooksAppln.Controllers
             {
                 client.BaseAddress = new Uri(Baseurl);
                 client.DefaultRequestHeaders.Clear();
-                HttpResponseMessage res = await client.GetAsync(Baseurl);
+                HttpResponseMessage res = await client.GetAsync(url);
                 if (res.IsSuccessStatusCode)
                 {
                     response = res.Content.ReadAsStringAsync().Result;
