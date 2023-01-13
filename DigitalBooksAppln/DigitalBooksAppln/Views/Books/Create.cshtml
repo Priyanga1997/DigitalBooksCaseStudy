@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>Create</title>
     <style>
-        .create, .viewbooks,.back {
+        .create, .viewbooks, .back {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -23,74 +23,68 @@
         <b>@context.HttpContext.Session.GetString("username")</b>
     </span>
     <center><h3>Create Books</h3></center>
-<hr />
+    <hr />
     <div class="create">
-    <div class="col-md-4">
+        <div class="col-md-4">
             <form asp-action="Create" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" required/>
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Category" class="control-label"></label>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" required />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Category" class="control-label"></label>
                     <select asp-for="Category" style="padding-right:262px;padding-top:9px;padding-bottom:9px;" required>
-                            <option value="">--Select Category--</option>
-                            <option value="Fantasy">Fantasy</option>
-                            <option value="Spirituality">Spirituality</option>
-                            <option value="Fiction">Fiction</option>
-                            <option value="Science Fiction">Science Fiction</option>
-                            <option value="Thriller">Thriller</option>
-                        </select>
-                <span asp-validation-for="Category" class="text-danger"></span>
-            </div>
-           @* <div class="form-group">
-                    <label asp-for="Image" class="control-label"></label>
-                    <input asp-for="Image" name="files" type="file" class="form-control"/>
-                    <input type="submit" value="Upload" />
-                <span asp-validation-for="Image" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" required/>
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Publisher" class="control-label"></label>
-                <input asp-for="Publisher" class="form-control" required/>
-                <span asp-validation-for="Publisher" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Active" class="control-label"></label>
-                 <select asp-for="Active" style="padding-right:242px;padding-top:9px;padding-bottom:9px;" required>
+                        <option value="">--Select Category--</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="Spirituality">Spirituality</option>
+                        <option value="Fiction">Fiction</option>
+                        <option value="Science Fiction">Science Fiction</option>
+                        <option value="Thriller">Thriller</option>
+                    </select>
+                    <span asp-validation-for="Category" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="form-control" required />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Publisher" class="control-label"></label>
+                    <input asp-for="Publisher" class="form-control" required />
+                    <span asp-validation-for="Publisher" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Active" class="control-label"></label>
+                    <select asp-for="Active" style="padding-right:242px;padding-top:9px;padding-bottom:9px;" required>
                         <option value="">--Select Active Status--</option>
                         <option value="yes">yes</option>
                         <option value="no">no</option>
                     </select>
-                <span asp-validation-for="Active" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BookContent" class="control-label"></label>
-                <input asp-for="BookContent" class="form-control" required/>
-                <span asp-validation-for="BookContent" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Author" class="control-label"></label>
-                <input asp-for="Author" class="form-control" required/>
-                <span asp-validation-for="Author" class="text-danger"></span>
-            </div>
+                    <span asp-validation-for="Active" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BookContent" class="control-label"></label>
+                    <input asp-for="BookContent" class="form-control" required />
+                    <span asp-validation-for="BookContent" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Author" class="control-label"></label>
+                    <input asp-for="Author" class="form-control" required />
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
                 <div class="form-group">
                     <label asp-for="EmailId" class="control-label"></label>
-                    <input asp-for="EmailId" class="form-control" required/>
+                    <input asp-for="EmailId" class="form-control" required />
                     <span asp-validation-for="EmailId" class="text-danger"></span>
                 </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
     <div class="viewbooks">
         <p>
             <a asp-controller="Books" asp-action="Details" style="font-size:18px;font-family:cursive">View My Books</a>
@@ -99,10 +93,12 @@
 
     <div class="back">
         <a asp-action="Index" a asp-controller="Home" style="font-size:18px;font-family:cursive">Back to List</a>
-</div>
+    </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
 </body>
 </html>

@@ -1,13 +1,8 @@
 ﻿@model IEnumerable<DigitalBooksAppln.Models.Book>
-@*@inject IHttpContextAccessor context*@
-@*@{
-    //Layout = "~/Views/Shared/_Layout.cshtml";
-    //ViewData["Title"] = "Home Page";
-}*@
 
 <div class="text-center">
     <h3 style="color:blueviolet">Welcome to Digital Books</h3>
-   @* <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
+    @* <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
 </div>
 
 <!DOCTYPE html>
@@ -18,9 +13,6 @@
     <title>Index</title>
 </head>
 <body>
-    @*<p>
-        <input type="button" class="btn btn-outline-primary" value="Create Book" onclick="@("window.location.href='" + @Url.Action("Create", "Books") + "'");" />
-    </p>*@
     <form method="get" asp-action="Index" asp-controller="Home">
         <div>
             <input type="text" name="searchValue" style="padding-right:300px" />
@@ -59,7 +51,7 @@
             </tr>
         </thead>
         <tbody>
-            @if(Model!=null && Model.Any())
+            @if (Model != null && Model.Any())
             {
                 @foreach (var item in Model)
                 {
@@ -101,7 +93,6 @@
                     </td>
                 </tr>
             }
-          
         </tbody>
     </table>
 </body>

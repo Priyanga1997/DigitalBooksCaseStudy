@@ -8,8 +8,8 @@
 <head>
 </head>
 <center><h3 style="color:blueviolet">AdminView</h3></center>
-    <body>
-<table class="table table-striped">
+<body>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>
@@ -40,40 +40,40 @@
             {
                 @foreach (var item in Model)
                 {
-                  <tr>
-                      <td>
+                    <tr>
+                        <td>
                             @Html.DisplayFor(modelItem => item.SubscriptionId)
-                       </td>
-                       <td>
+                        </td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.BookId)
                         </td>
-                                                        <td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.Title)
-                                                        </td>
-                                                        <td>
+                        </td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.EmailId)
-                                                        </td>
-                                                        <td>
+                        </td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.SubscriptionActive)
-                                                        </td>
-                                                        <td>
+                        </td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.UserId)
-                                                        </td>
-                                                        <td>
+                        </td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.Author)
-                                                        </td>
-                                                    </tr>
+                        </td>
+                    </tr>
                 }
             }
             else
             {
-                                <tr>
-                                    <td colspan="6">
-                                        <div>
-                                            No Books Available at this moment!!
-                                        </div>
-                                    </td>
-                                </tr>
+                <tr>
+                    <td colspan="6">
+                        <div>
+                            No Books Available at this moment!!
+                        </div>
+                    </td>
+                </tr>
             }
 
         </tbody>

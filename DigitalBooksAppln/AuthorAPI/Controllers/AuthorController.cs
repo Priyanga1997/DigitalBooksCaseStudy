@@ -19,6 +19,10 @@ namespace AuthorAPI.Controllers
             _author = author;
         }
 
+        /// <summary>
+        /// Api method to get all book details
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("Author/Index")]
         public IActionResult Index()
@@ -34,6 +38,11 @@ namespace AuthorAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Api method to get book details by author emailId
+        /// </summary>
+        /// <param name="emailId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("Author/Details")]
         public IActionResult Details(string emailId)
@@ -53,6 +62,11 @@ namespace AuthorAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Api method to create books
+        /// </summary>
+        /// <param name="book"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Author/Create")]
         public async Task<IActionResult> CreateAsync([Bind("Title,Category,Price,Publisher,Active,BookContent,Author,EmailId")] Book book)
@@ -68,9 +82,14 @@ namespace AuthorAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Api method to get the book id to be edited
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("Author/Edit")]
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> EditAsync(int? id)
         {
             if (id == null || _db.Books == null)
             {
@@ -85,6 +104,12 @@ namespace AuthorAPI.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Api method to edit book details
+        /// </summary>
+        /// <param name="book"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("Author/Edit")]
         public async Task<IActionResult> EditAsync([Bind("Title,Category,Price,Publisher,Active,BookContent,Author,EmailId")] Book book, int id)
@@ -104,6 +129,11 @@ namespace AuthorAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Api method to find the book id to be deleted
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("Author/Delete")]
         public async Task<IActionResult> Delete(int id)
@@ -123,6 +153,11 @@ namespace AuthorAPI.Controllers
             return Ok(book);
         }
 
+        /// <summary>
+        /// Api method to delete the books
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("Author/Delete")]
         public async Task<IActionResult> DeleteAsync(int id)
@@ -138,23 +173,11 @@ namespace AuthorAPI.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("Author/BlockBook")]
-        public async Task<IActionResult> BlockBook(int? id)
-        {
-            if (id == null || _db.Books == null)
-            {
-                return NotFound();
-            }
-
-            var response = await _db.Books.FindAsync(id);
-            if (response == null)
-            {
-                return NotFound();
-            }
-            return Ok(response);
-        }
-
+        /// <summary>
+        /// Api method to block books
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("Author/BlockBook")]
         public async Task<IActionResult> BlockBookAsync(int id)
@@ -170,23 +193,11 @@ namespace AuthorAPI.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("Author/UnblockBook")]
-        public async Task<IActionResult> UnblockBook(int? id)
-        {
-            if (id == null || _db.Books == null)
-            {
-                return NotFound();
-            }
-
-            var response = await _db.Books.FindAsync(id);
-            if (response == null)
-            {
-                return NotFound();
-            }
-            return Ok(response);
-        }
-
+        /// <summary>
+        /// Api method to unblock books
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("Author/UnblockBook")]
         public async Task<IActionResult> UnblockBookAsync(int id)

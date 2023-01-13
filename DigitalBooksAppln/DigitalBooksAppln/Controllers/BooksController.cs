@@ -99,7 +99,6 @@ namespace DigitalBooksAppln.Controllers
                 if (res.IsSuccessStatusCode)
                 {
                     response = res.Content.ReadAsStringAsync().Result;
-
                 }
             }
             return RedirectToAction("Create", "Books");
@@ -114,24 +113,22 @@ namespace DigitalBooksAppln.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
+            string Baseurl = "https://localhost:7042/";
+            using (var client = new HttpClient())
             {
-                string Baseurl = "https://localhost:7042/";
-                using (var client = new HttpClient())
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Clear();
+                HttpResponseMessage res = await client.GetAsync("api/Author/Author/Edit?id=" + id);
+                if (res.IsSuccessStatusCode)
                 {
-                    client.BaseAddress = new Uri(Baseurl);
-                    client.DefaultRequestHeaders.Clear();
-                    HttpResponseMessage res = await client.GetAsync("api/Author/Author/Edit?id=" + id);
-                    if (res.IsSuccessStatusCode)
-                    {
-                        var response = res.Content.ReadAsStringAsync();
-                        var books = JsonConvert.DeserializeObject<Book>(response.Result);
-                        var bookResponse = books;
-                        return View(bookResponse);
-                    }
-                    else
-                    {
-                        return View();
-                    }
+                    var response = res.Content.ReadAsStringAsync();
+                    var books = JsonConvert.DeserializeObject<Book>(response.Result);
+                    var bookResponse = books;
+                    return View(bookResponse);
+                }
+                else
+                {
+                    return View();
                 }
             }
         }
@@ -412,7 +409,6 @@ namespace DigitalBooksAppln.Controllers
                 subscription.EmailId = _httpContext.HttpContext.Session.GetString("emailId");
                 subscription.SubscriptionActive = "yes";
                 subscription.UserId = int.Parse(_httpContext.HttpContext.Session.GetString("userId"));
-                //subscription.BookContent = book.BookContent;
                 client.BaseAddress = new Uri(Baseurl);
                 client.DefaultRequestHeaders.Clear();
                 var content = new StringContent(JsonConvert.SerializeObject(subscription), Encoding.UTF8, "application/json");
@@ -509,14 +505,14 @@ namespace DigitalBooksAppln.Controllers
                     response = await res.Content.ReadAsStringAsync();
                     books = JsonConvert.DeserializeObject<List<Book>>(response);
                     var bookResponse = from book in books
-                                               select (new Book() { Title = book.Title, Author = book.Author,BookContent=book.BookContent});
+                                       select (new Book() { Title = book.Title, Author = book.Author, BookContent = book.BookContent });
                     return View(bookResponse);
                 }
                 else
                 {
                     return View();
                 }
-            }           
+            }
         }
 
         /// <summary>

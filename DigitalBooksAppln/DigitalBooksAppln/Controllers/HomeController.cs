@@ -14,11 +14,14 @@ namespace DigitalBooksAppln.Controllers
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
+        /// <summary>
+        /// Method to get and display all book details
+        /// </summary>
+        /// <param name="sortOrder"></param>
+        /// <param name="searchValue"></param>
+        /// <param name="pageNumber"></param>
+        /// <param name="currentFilter"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Index(string sortOrder, string searchValue, int? pageNumber, string currentFilter)
         {
@@ -45,7 +48,6 @@ namespace DigitalBooksAppln.Controllers
                 List<Book> books = new List<Book>();
                 client.BaseAddress = new Uri(BaseUrl);
                 client.DefaultRequestHeaders.Clear();
-                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage response = await client.GetAsync("api/Author/Author/Index");
                 if (response.IsSuccessStatusCode)
@@ -53,7 +55,7 @@ namespace DigitalBooksAppln.Controllers
                     var bookResult = await response.Content.ReadAsStringAsync();
                     books = JsonConvert.DeserializeObject<List<Book>>(bookResult);
                     var bookResponse = from book in books
-                                       select (new Book() { Title = book.Title, Category = book.Category, Price = book.Price, Publisher = book.Publisher, BookContent = book.BookContent, Author = book.Author , Active = book.Active, BookId=book.BookId});
+                                       select (new Book() { Title = book.Title, Category = book.Category, Price = book.Price, Publisher = book.Publisher, BookContent = book.BookContent, Author = book.Author, Active = book.Active, BookId = book.BookId });
                     //Searching
                     if (!string.IsNullOrEmpty(searchValue))
                     {
@@ -108,7 +110,6 @@ namespace DigitalBooksAppln.Controllers
                 {
                     return View();
                 }
-
             }
         }
 

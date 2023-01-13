@@ -17,8 +17,7 @@
           "Moq": "4.18.3",
           "NUnit": "3.13.3",
           "NUnit3TestAdapter": "3.15.1",
-          "ReaderAPI": "1.0.0",
-          "UserAPI": "1.0.0"
+          "ReaderAPI": "1.0.0"
         },
         "runtime": {
           "UnitTests.dll": {}
@@ -3036,15 +3035,6 @@
         "runtime": {
           "ReaderAPI.dll": {}
         }
-      },
-      "UserAPI/1.0.0": {
-        "dependencies": {
-          "Common": "1.0.0",
-          "Swashbuckle.AspNetCore": "6.2.3"
-        },
-        "runtime": {
-          "UserAPI.dll": {}
-        }
       }
     }
   },
@@ -4617,11 +4607,6 @@
       "sha512": ""
     },
     "ReaderAPI/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UserAPI/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

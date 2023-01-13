@@ -7,7 +7,7 @@
 <html>
 <head>
     <style>
-        .search {
+        .search, .back {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -25,23 +25,23 @@
                     var row = $(this);
                     var book = {};
                     book.Title = row.find("TD").eq(0).html();
-                    //book.Author = row.find("TD").eq(4).html();
-                    //subscription.EmailId = row.find("TD").eq(2).html();
-                    //book.BookId = row.find("TD").eq(6).html();
+                    book.Author = row.find("TD").eq(4).html();
+                    subscription.EmailId = row.find("TD").eq(2).html();
+                    book.BookId = row.find("TD").eq(6).html();
                     books.push(book);
                 });
 
-                //DigitalBooksAppln.Models.Book = subscription;
+                DigitalBooksAppln.Models.Book = subscription;
 
                 //Send the JSON array to Controller using AJAX.
                 $.ajax({
                     type: "POST",
                     url: @Url.Action("Subscribe", "Books")',
-                    data: JSON.stringify({Book:books}),
+                                            data: JSON.stringify({ Book: books }),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {
-                        alert(response+ "subscription added.");
+                        alert(response + "subscription added.");
                     }
                 });
             });
@@ -52,15 +52,15 @@
 
 <body>
     <div>
-    <span style="float:right">
-        Welcome
-        <b>@context.HttpContext.Session.GetString("username")</b>
-    </span>
+        <span style="float:right">
+            Welcome
+            <b>@context.HttpContext.Session.GetString("username")</b>
+        </span>
     </div>
     <div>
         <span style="font-size:18px;font-family:cursive">
-        @Html.ActionLink("View My Subscriptions", "Subscribe", new Subscription{EmailId=@context.HttpContext.Session.GetString("emailId")})
-    </span>
+            @Html.ActionLink("View My Subscriptions", "Subscribe", new Subscription{EmailId=@context.HttpContext.Session.GetString("emailId")})
+        </span>
     </div>
     <center><h3>Search Books</h3></center>
     <div class="search">
@@ -70,35 +70,38 @@
             Price<input type="text" name="Price" value="Price" class="form-control" /><br />
             Publisher<input type="text" name="Publisher" value="Publisher" class="form-control" /><br />
             Author<input type="text" name="Author" value="Author" class="form-control" /><br />
-            <input type="submit" value="Search" class="btn btn-primary"/>
+            <input type="submit" value="Search" class="btn btn-primary" />
         </form>
-    </div><br/>
+    </div>
+    <br />
     <div>
-    <table cellpadding="0" cellspacing="0" class="table table-striped" id="searchTable">
-        <tr>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Publisher</th>
-            <th>Author</th>
-            <th>Active</th>
-            <th>BookId</th>
-        </tr>
-        @foreach (var item in Model)
-        {
+        <table cellpadding="0" cellspacing="0" class="table table-striped" id="searchTable">
             <tr>
-                <td>@item.Title</td>
-                <td>@item.Category</td>
-                <td>@item.Price</td>
-                <td>@item.Publisher</td>
-                <td>@item.Author</td>
-                <td>@item.Active</td>
-                <td>@item.BookId</td>
-               @* <td><a asp-action="Subscribe" asp-controller="Books" method="post" asp-route-id="@item.BookId" class="btn btn-primary">Subscribe</a></td>*@
-                    <td class="btn btn-primary">@Html.ActionLink("Subscribe", "SubscribeBooks", new Book{Title=item.Title,Author=item.Author,BookId=item.BookId,BookContent=item.BookContent})</td>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Publisher</th>
+                <th>Author</th>
+                <th>Active</th>
+                <th>BookId</th>
             </tr>
-        }
-    </table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Title</td>
+                    <td>@item.Category</td>
+                    <td>@item.Price</td>
+                    <td>@item.Publisher</td>
+                    <td>@item.Author</td>
+                    <td>@item.Active</td>
+                    <td>@item.BookId</td>
+                    <td class="btn btn-primary">@Html.ActionLink("Subscribe", "SubscribeBooks", new Book{Title=item.Title,Author=item.Author,BookId=item.BookId,BookContent=item.BookContent})</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="back">
+        <a asp-action="Index" a asp-controller="Home" style="font-size:18px;font-family:cursive">Back to List</a>
     </div>
 </body>
 </html>

@@ -16,9 +16,6 @@ D:\CaseStudy\DigitalBooksAppln\UnitTests\bin\Debug\net6.0\DigitalBooksAppln.exe
 D:\CaseStudy\DigitalBooksAppln\UnitTests\bin\Debug\net6.0\ReaderAPI.deps.json
 D:\CaseStudy\DigitalBooksAppln\UnitTests\bin\Debug\net6.0\ReaderAPI.runtimeconfig.json
 D:\CaseStudy\DigitalBooksAppln\UnitTests\bin\Debug\net6.0\ReaderAPI.exe
-D:\CaseStudy\DigitalBooksAppln\UnitTests\bin\Debug\net6.0\UserAPI.deps.json
-D:\CaseStudy\DigitalBooksAppln\UnitTests\bin\Debug\net6.0\UserAPI.runtimeconfig.json
-D:\CaseStudy\DigitalBooksAppln\UnitTests\bin\Debug\net6.0\UserAPI.exe
 D:\CaseStudy\DigitalBooksAppln\UnitTests\bin\Debug\net6.0\NUnit3.TestAdapter.dll
 D:\CaseStudy\DigitalBooksAppln\UnitTests\bin\Debug\net6.0\NUnit3.TestAdapter.pdb
 D:\CaseStudy\DigitalBooksAppln\UnitTests\bin\Debug\net6.0\nunit.engine.dll
@@ -379,12 +376,10 @@ D:\CaseStudy\DigitalBooksAppln\UnitTests\bin\Debug\net6.0\AuthorAPI.dll
 D:\CaseStudy\DigitalBooksAppln\UnitTests\bin\Debug\net6.0\Common.dll
 D:\CaseStudy\DigitalBooksAppln\UnitTests\bin\Debug\net6.0\DigitalBooksAppln.dll
 D:\CaseStudy\DigitalBooksAppln\UnitTests\bin\Debug\net6.0\ReaderAPI.dll
-D:\CaseStudy\DigitalBooksAppln\UnitTests\bin\Debug\net6.0\UserAPI.dll
 D:\CaseStudy\DigitalBooksAppln\UnitTests\bin\Debug\net6.0\AuthorAPI.pdb
 D:\CaseStudy\DigitalBooksAppln\UnitTests\bin\Debug\net6.0\Common.pdb
 D:\CaseStudy\DigitalBooksAppln\UnitTests\bin\Debug\net6.0\DigitalBooksAppln.pdb
 D:\CaseStudy\DigitalBooksAppln\UnitTests\bin\Debug\net6.0\ReaderAPI.pdb
-D:\CaseStudy\DigitalBooksAppln\UnitTests\bin\Debug\net6.0\UserAPI.pdb
 D:\CaseStudy\DigitalBooksAppln\UnitTests\obj\Debug\net6.0\UnitTests.csproj.CopyComplete
 D:\CaseStudy\DigitalBooksAppln\UnitTests\obj\Debug\net6.0\UnitTests.dll
 D:\CaseStudy\DigitalBooksAppln\UnitTests\obj\Debug\net6.0\refint\UnitTests.dll

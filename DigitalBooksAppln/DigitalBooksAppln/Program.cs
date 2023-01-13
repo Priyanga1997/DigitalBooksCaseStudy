@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Newtonsoft.Json;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
@@ -21,7 +20,6 @@ builder.Services.AddSession(options =>
 
 });
 builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddAuthentication();
 var connectionString = builder.Configuration.GetConnectionString("UserDbConnection");
 builder.Services.AddDbContext<DigitalBooksContext>(x => x.UseSqlServer(connectionString));
 builder.Services.AddSwaggerGen(x =>
@@ -64,21 +62,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).
                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["jwt:Key"]))
                    };
                });
-builder.Services.AddAuthorization(options =>
-{
+builder.Services.AddAuthorization();
+//builder.Services.AddAuthorization(options =>
+//{
 
-    options.AddPolicy("author",
-        authBuilder =>
-        {
-            authBuilder.RequireRole("author");
-        });
+//    options.AddPolicy("author",
+//        authBuilder =>
+//        {
+//            authBuilder.RequireRole("author");
+//        });
 
-});
+//});
 builder.Services.AddCors();
 builder.Services.AddScoped<IUsers, UsersService>();
-//builder.Services.AddMvc();
-//builder.Services.AddHttpContextAccessor();
-//builder.Services.AddScoped<IUser, UserService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

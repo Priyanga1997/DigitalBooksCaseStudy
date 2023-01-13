@@ -2,13 +2,11 @@
 using DigitalBooksAppln.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
-using DigitalBooksAppln.Services;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Http;
 
 namespace DigitalBooksAppln.Services
 {
-    public class UsersService:IUsers
+    public class UsersService : IUsers
     {
         DigitalBooksContext _db;
         private IConfiguration _config;
@@ -69,8 +67,6 @@ namespace DigitalBooksAppln.Services
             new Claim(JwtRegisteredClaimNames.Email, login.EmailId??""),
             new Claim(ClaimTypes.Role,login.UserType??"")
         };
-            //IEnumerable<string> audience = null;
-            //claims.AddRange(audience.Select(aud => new Claim(JwtRegisteredClaimNames.Email, aud)));
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var token = new JwtSecurityToken(_config["jwt:Issuer"],
@@ -78,9 +74,6 @@ namespace DigitalBooksAppln.Services
                 claims,
                 expires: DateTime.Now.AddMinutes(10),
                 signingCredentials: credentials);
-            //var httpContext = _httpContextAccessor.HttpContext;
-            //httpContext.Session.SetString("token", token.ToString());
-            //httpContext.Session.SetString("emailId", login.EmailId);
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 

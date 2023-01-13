@@ -3,14 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AuthorAPI.Services
 {
-    public class AuthorService :IAuthor
+    public class AuthorService : IAuthor
     {
         DigitalBooksContext _db;
-        private readonly IWebHostEnvironment _webHostEnvironment;
-        public AuthorService(DigitalBooksContext db, IWebHostEnvironment webHostEnvironment)
+        public AuthorService(DigitalBooksContext db)
         {
             _db = db;
-            _webHostEnvironment = webHostEnvironment;
         }
 
         public IEnumerable<Book> Index()
@@ -39,12 +37,6 @@ namespace AuthorAPI.Services
             var book = _db.Books.Where(x => x.BookId == id).FirstOrDefault();
             if (book != null)
             {
-                //if (bookmodel.Image != null)
-                //{
-                //string folder = "books/Images";
-                //folder += bookmodel.Image.FileName + DateTime.Now.ToString("yyyyMMddHHmmss");
-                //string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
-                //bookmodel.Image.CopyTo(new FileStream(serverFolder, FileMode.Create));
                 book.Title = bookmodel.Title;
                 book.Category = bookmodel.Category;
                 book.Price = bookmodel.Price;
@@ -53,10 +45,8 @@ namespace AuthorAPI.Services
                 book.BookContent = bookmodel.BookContent;
                 book.Author = bookmodel.Author;
                 book.EmailId = bookmodel.EmailId;
-                //book.Image = folder;
                 _db.Books.Update(book);
                 _db.SaveChanges();
-                // }
             }
             return book;
         }

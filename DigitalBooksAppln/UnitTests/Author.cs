@@ -87,7 +87,6 @@ namespace UnitTests
         {
             //Arrange
             var book = _fixture.Create<Book>();
-            //var bookModel = _fixture.Create<BookModel>();
             var id = _fixture.Create<int>();
             _mock.Setup(x => x.EditAsync(It.IsAny<Book>(), It.IsAny<int>())).ReturnsAsync(book);
 

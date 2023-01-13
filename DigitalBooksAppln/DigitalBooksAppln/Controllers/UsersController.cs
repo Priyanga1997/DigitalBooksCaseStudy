@@ -1,11 +1,6 @@
 ﻿using DigitalBooksAppln.Models;
 using DigitalBooksAppln.Services;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using System.Net.Http.Headers;
-using System.Text;
-
 namespace DigitalBooksAppln.Controllers
 {
     public class UsersController : Controller
@@ -44,7 +39,6 @@ namespace DigitalBooksAppln.Controllers
             {
                 IActionResult response = Unauthorized();
                 var userdata = await _user.LoginAsync(login, false);
-                //string userid = HttpContext.User.Identity.Name;
                 _httpContextAccessor.HttpContext.Session.SetString("token", userdata.token.ToString());
                 _httpContextAccessor.HttpContext.Session.SetString("emailId", login.EmailId.ToString());
                 _httpContextAccessor.HttpContext.Session.SetString("username", login.UserName.ToString());
@@ -54,15 +48,15 @@ namespace DigitalBooksAppln.Controllers
                 {
                     if (login.UserType == "author")
                     {
-                        return RedirectToAction("Create", "Books", new { token = userdata, emailId =login.EmailId ,username = login.UserName, userId=login.UserId }) ;
+                        return RedirectToAction("Create", "Books", new { token = userdata, emailId = login.EmailId, username = login.UserName, userId = login.UserId });
                     }
                     if (login.UserType == "reader")
                     {
-                        return RedirectToAction("Search", "Books", new { token = userdata, emailId = login.EmailId, username = login.UserName,userId=login.UserId });
+                        return RedirectToAction("Search", "Books", new { token = userdata, emailId = login.EmailId, username = login.UserName, userId = login.UserId });
                     }
                     if (login.UserType == "admin")
                     {
-                        return RedirectToAction("AdminView", "Books", new { token = userdata, emailId = login.EmailId, username = login.UserName});
+                        return RedirectToAction("AdminView", "Books", new { token = userdata, emailId = login.EmailId, username = login.UserName });
                     }
                     response = Ok(new { token = userdata });
                 }
